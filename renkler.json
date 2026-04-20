@@ -1,0 +1,46 @@
+{
+    "siyah": {
+        "fiyat": 551.74,
+        "renk": "#000000"
+    },
+    "beyaz": {
+        "fiyat": 551.74,
+        "renk": "#ffffff"
+    },
+    "koyu mavi": {
+        "fiyat": 598.36,
+        "renk": "#0011ff"
+    },
+    "açık mavi": {
+        "fiyat": 582.85,
+        "renk": "#00eaff"
+    },
+    "krem": {
+        "fiyat": 598.36,
+        "renk": "#f7cf97"
+    },
+    "pembe": {
+        "fiyat": 621.3,
+        "renk": "#ff8fec"
+    },
+    "kırmızı": {
+        "fiyat": 621.3,
+        "renk": "#ff0000"
+    },
+    "kahve rengi": {
+        "fiyat": 616.56,
+        "renk": "#371717"
+    },
+    "yeşil": {
+        "fiyat": 555.89,
+        "renk": "#37ff00"
+    },
+    "turuncu": {
+        "fiyat": 555.89,
+        "renk": "#ff4200"
+    },
+    "sarı": {
+        "fiyat": 621.3,
+        "renk": "#f8ff00"
+    }
+}
