@@ -53,3 +53,27 @@ for key, val in list(st.session_state.envanter.items()):
         del st.session_state.envanter[key]
         save_data(st.session_state.envanter) # Artık Sheets'ten siler!
         st.rerun()
+# ------------------ ARAYÜZ ------------------
+st.title("🖨️ PrintLab Üretim Paneli")
+
+st.subheader("🛠️ Filament Yönetimi")
+c1, c2, c3, c4 = st.columns([2,2,1,1])
+isim = c1.text_input("Filament Adı")
+fiyat = c2.number_input("KG Fiyatı", min_value=0.0)
+renk = c3.color_picker("Renk")
+
+if c4.button("EKLE"):
+    if isim:
+        st.session_state.envanter[isim] = {"fiyat": fiyat, "renk": renk}
+        save_data(st.session_state.envanter)
+        st.rerun()
+
+for key, val in list(st.session_state.envanter.items()):
+    r1, r2, r3, r4 = st.columns([3,2,2,1])
+    r1.write(f"🔹 **{key}**")
+    r2.write(f"{val['fiyat']} TL/KG")
+    r3.markdown(f"<div style='background:{val['renk']}; height:10px;'></div>", unsafe_allow_html=True)
+    if r4.button("❌", key=f"del_{key}"):
+        del st.session_state.envanter[key]
+        save_data(st.session_state.envanter)
+        st.rerun()
