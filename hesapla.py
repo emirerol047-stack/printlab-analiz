@@ -1,8 +1,6 @@
 def get_sheet():
-    creds_dict = st.secrets["gcp_service_account"]
-    scope = [
-        'https://www.googleapis.com/auth/spreadsheets',
-        'https://www.googleapis.com/auth/drive'
+    # Bağlantıyı şimdilik boş bırakıyoruz ki uygulama açılsın
+    return None
     ]
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
