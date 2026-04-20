@@ -9,6 +9,7 @@ def get_sheet():
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
+    # Hata durumunu netleştirmek için dosya adını kontrol edelim
     return client.open("PrintLab_Data").sheet1
 
 # Verileri Yükle
