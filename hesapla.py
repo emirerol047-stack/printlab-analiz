@@ -19,7 +19,7 @@ try:
         st.write("2. Yetkilendirme başarılı.")
         
         # 3. Tablo erişimi
-        sh = client.open_by_key("1kafLg6JbF77KW6wtSysG-SX-1eL0uyP34HzWt2nbra")
+        sh = client.open("PrintLab_Data")
         st.write("3. Tablo bulundu: " + sh.title)
         
         # 4. Sekme erişimi
