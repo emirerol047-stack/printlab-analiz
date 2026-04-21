@@ -2,26 +2,29 @@ import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# Hataları daha iyi görmek için config
-st.set_page_config(page_title="PrintLab Hata Ayıklama")
+st.title("🖨️ PrintLab Detaylı Bağlantı Testi")
 
-def get_sheet():
-    # 1. Adım: Secrets okunabiliyor mu?
+try:
+    # 1. Secrets kontrolü
     if "gcp_service_account" not in st.secrets:
-        return "HATA: 'gcp_service_account' bilgisi Secrets içinde bulunamadı!"
-    
-    creds_dict = st.secrets["gcp_service_account"]
-    
-    try:
+        st.error("HATA: Secrets içinde 'gcp_service_account' bulunamadı.")
+    else:
+        creds_dict = st.secrets["gcp_service_account"]
+        st.write("1. Secrets okundu.")
+        
+        # 2. Yetkilendirme
         scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
         client = gspread.authorize(creds)
-        # 2. Adım: Dosyaya erişilebiliyor mu?
+        st.write("2. Yetkilendirme başarılı.")
+        
+        # 3. Tablo erişimi
         sh = client.open_by_key("1kafLg6JbF77KW6wtSysG-SX-1eL0uyP34HzWt2nbra")
-        return sh.sheet1
-    except Exception as e:
-        return f"HATA: {str(e)}"
+        st.write("3. Tablo bulundu: " + sh.title)
+        
+        # 4. Sekme erişimi
+        ws = sh.sheet1
+        st.success(f"4. Bağlantı TAMAM! '{ws.title}' sayfasına ulaşıldı.")
 
-st.title("🖨️ PrintLab Bağlantı Testi")
-sonuc = get_sheet()
-st.write(sonuc)
+except Exception as e:
+    st.error(f"HATA OLUŞTU: {type(e).__name__} - {e}")
